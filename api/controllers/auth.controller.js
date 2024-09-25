@@ -45,9 +45,9 @@ export const login = async (req, res) => {
         //generate cookie tokens and send to users
         // res.setHeader("Set-Cookie","test=" + "myvalue").json({message:"successful"})
         res.cookie("test2", "myValue2", {
-            httpOnly: true,
+            httpOnly: true
             //secure:true  (use in production mode)
-        }).status(200).json({ message: "login successful" })
+        }).status(200).json({ message: "login successful" });
     } catch (error) {
         console.log(error);
         res.status(500).json({ message: "failure to login" });
