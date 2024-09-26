@@ -1,5 +1,8 @@
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 import prisma from "../lib/prisma.js";
+
+//-----------------------REGISTER----------------------------REGISTER----------------------------------
 
 export const register = async (req, res) => {
     //destructuring the req
@@ -27,6 +30,9 @@ export const register = async (req, res) => {
         res.status(500).json({ message: "there was an error creating new user" })
     }
 };
+
+//-----------------------LOGIN----------------------------LOGIN----------------------------------
+
 export const login = async (req, res) => {
 
     const { username, password } = req.body;
@@ -44,9 +50,20 @@ export const login = async (req, res) => {
 
         //generate cookie tokens and send to users
         // res.setHeader("Set-Cookie","test=" + "myvalue").json({message:"successful"})
-        res.cookie("test2", "myValue2", {
-            httpOnly: true
+
+        const age = 1000 *60 *60 *24 * 7;
+
+        const token = jwt.sign({
+            id:user.id,
+        },
+            process.env.JWT_SECRET_KEY,
+            {expiresIn:age  }
+        );
+
+        res.cookie("token", token, {
+            httpOnly: true,
             //secure:true  (use in production mode)
+            maxAge:age,
         }).status(200).json({ message: "login successful" });
     } catch (error) {
         console.log(error);
@@ -54,6 +71,9 @@ export const login = async (req, res) => {
     }
 
 };
-export const logout = (req, res) => {
 
+//-----------------------LOGOUT----------------------------LOGOUT----------------------------------
+
+export const logout = (req, res) => {
+    res.clearCookie("token").status(200).json({message:"logout successful"})
 };
