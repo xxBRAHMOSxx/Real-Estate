@@ -59,12 +59,14 @@ export const login = async (req, res) => {
             process.env.JWT_SECRET_KEY,
             {expiresIn:age  }
         );
+        //change password name for security and ... is a spread operator userInfo is just a name
+        const {password:userPassword,...userInfo} = user
 
         res.cookie("token", token, {
             httpOnly: true,
             //secure:true  (use in production mode)
             maxAge:age,
-        }).status(200).json({ message: "login successful" });
+        }).status(200).json(userInfo);
     } catch (error) {
         console.log(error);
         res.status(500).json({ message: "failure to login" });
