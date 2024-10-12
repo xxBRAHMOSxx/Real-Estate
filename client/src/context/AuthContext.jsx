@@ -1,14 +1,20 @@
-import { useContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
-export const AuthContext = useContext()
+export const AuthContext = createContext()
 
 export const AuthContextProvider = ({children}) =>{
     const [currentUser,setCurrentUser] = useState(
-        //user we get is a string so convert to object
-        JSON.parse(localStorage.getItem("user")) || null
+        JSON.parse(localStorage.getItem("user")) || null//user we get is a string so convert to object
     )
 
+    const updateUser =(data)=>{
+        setCurrentUser(data);
+    }
+    useEffect(()=>{
+        localStorage.setItem("user",JSON.stringify(currentUser))
+    },[currentUser])
+
     return (
-        <AuthContext.Provider value={currentUser}>{children}</AuthContext.Provider>
+        <AuthContext.Provider value={{currentUser,updateUser}}>{children}</AuthContext.Provider>
     )
 }

@@ -61,7 +61,7 @@ nav {
 
     a {
       padding: 12px 24px;
-      margin: 20px;
+      margin: 20px 10px;
     }
 
     .user {
@@ -109,6 +109,20 @@ nav {
 
     .register {
       background-color: #fece51;
+    padding: 12px 24px;
+    margin-left: 10px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.4s ease;
+    border-radius: 4px; /* Add some border radius for a polished look */
+    display: flex;
+    align-items: center; /* Ensure it's centered vertically */
+    justify-content: center; 
+
+    @include sm {
+      display: none;
+    }
+
     }
 
     .menuIcon {
