@@ -43,7 +43,7 @@ function Login() {
           <h1>Welcome back</h1>
           <input name="username" required minLength={3} maxLength={20} type="text" placeholder="Username" />
           <input name="password" type="password" required placeholder="Password" />
-          <button disabled={isLoading}>Login</button>
+          <button disabled={isLoading}>{isLoading ? 'Loading...' : 'Login'}</button>
           {error && <span>{error}</span>}
           <Link to="/register">{"Don't"} you have an account?</Link>
         </form>

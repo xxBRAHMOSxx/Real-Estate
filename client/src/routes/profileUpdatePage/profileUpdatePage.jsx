@@ -8,12 +8,14 @@ import UploadWidget from "../../components/uploadWidget/UploadWidget";
 function ProfileUpdatePage() {
   const { currentUser, updateUser } = useContext(AuthContext);
   const [error, setError] = useState("");
-  const [avatar, setAvatar] = useState("");
+  const [avatar, setAvatar] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true)
     const formData = new FormData(e.target);
 
     const { username, email, password } = Object.fromEntries(formData);
@@ -23,13 +25,15 @@ function ProfileUpdatePage() {
         username,
         email,
         password,
-        avatar: avatar
+        avatar: avatar[0]
       });
       updateUser(res.data);
       navigate("/profile");
     } catch (err) {
       console.log(err);
       setError(err.response.data.message);
+    } finally {
+      setIsLoading(false)
     }
   };
 
@@ -60,12 +64,12 @@ function ProfileUpdatePage() {
             <label htmlFor="password">Password</label>
             <input id="password" name="password" type="password" />
           </div>
-          <button>Update</button>
+          <button disabled={isLoading}>{isLoading ? 'Loading...' : 'Update'}</button>
           {error && <span>error</span>}
         </form>
       </div>
       <div className="sideContainer">
-        <img src={avatar || currentUser.avatar || "/noavatar.png"} alt="" className="avatar" />
+        <img src={avatar[0] || currentUser.avatar || "/noavatar.png"} alt="" className="avatar" />
         <UploadWidget
           uwConfig={{
             cloudName: "dly7l1p5f",
@@ -74,7 +78,7 @@ function ProfileUpdatePage() {
             maxImageFileSize: 2000000,
             folder: "avatars",
           }}
-          setAvatar={setAvatar}
+          setState={setAvatar}
         />
         <h6>(using a free file uploader, may require few taps)</h6>
       </div>
