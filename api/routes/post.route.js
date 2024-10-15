@@ -1,17 +1,13 @@
 import express from 'express';
-
-// import all controllers
-// import SessionController from './app/controllers/SessionController';
-
+import {verifyToken} from "../middleware/verifyToken.js"
+import { getPost,getPosts,addPost,updatePost,deletePost } from '../controllers/post.controller.js';
 const router = express.Router();
 
-// Add router0
-router.get('/test', (req,res)=>{
-    console.log("router works")
-});
-// router.get('/', SessionController.store);
-// router.post('/', SessionController.store);
-// router.put('/', SessionController.store);
-// router.delete('/', SessionController.store);
+
+router.get('/',getPosts);
+router.get('/:id',getPost);
+router.post('/',verifyToken, addPost);
+router.put('/:id',verifyToken, updatePost);
+router.delete('/:id',verifyToken, deletePost);
 
 export default router;
