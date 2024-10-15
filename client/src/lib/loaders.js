@@ -1,3 +1,7 @@
+import apiRequest from "../lib/apiRequest"
+
 export const singlePageLoader = async ({request,params})=>{
-    const req = await apiRequest("")
+    const res = await apiRequest("/posts/"+params.id)
+    return res.data
+
 }
