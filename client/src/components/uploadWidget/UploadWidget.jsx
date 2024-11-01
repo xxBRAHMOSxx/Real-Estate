@@ -42,7 +42,7 @@ function UploadWidget({ uwConfig, setPublicId, setState }) {
         function () {
           myWidget.open();
         },
-        false
+        {once:true}
       );
     }
   };
