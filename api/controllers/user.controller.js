@@ -4,6 +4,7 @@ import bcrypt from "bcrypt"
 export const getUsers = async (req, res) => {
   try {
     const users = await prisma.user.findMany()
+    
     res.status(200).json(users)
 
   } catch (err) {

@@ -10,7 +10,7 @@ function NewPostPage() {
   const [value, setValue] = useState("")
   const [images, setImages] = useState([])
   const [error, setError] = useState("")
-  const [isLoading,setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate()
 
@@ -50,7 +50,7 @@ function NewPostPage() {
     } catch (err) {
       console.log(err)
       setError(error)
-    }finally{
+    } finally {
       setIsLoading(true)
     }
   }
@@ -144,18 +144,18 @@ function NewPostPage() {
               <input min={0} id="size" name="size" type="number" />
             </div>
             <div className="item">
-              <label htmlFor="school">School</label>
+              <label htmlFor="school">School (km)</label>
               <input min={0} id="school" name="school" type="number" />
             </div>
             <div className="item">
-              <label htmlFor="bus">bus</label>
+              <label htmlFor="bus">bus (km)</label>
               <input min={0} id="bus" name="bus" type="number" />
             </div>
             <div className="item">
-              <label htmlFor="restaurant">Restaurant</label>
+              <label htmlFor="restaurant">Restaurant (km)</label>
               <input min={0} id="restaurant" name="restaurant" type="number" />
             </div>
-            <button  disabled={isLoading} className="sendButton">{isLoading ? 'Loading...' : 'add'}</button>
+            <button disabled={isLoading} className="sendButton">{isLoading ? 'Loading...' : 'add'}</button>
             {error && <span>{error}</span>}
           </form>
         </div>
@@ -171,7 +171,7 @@ function NewPostPage() {
           folder: "posts",
         }}
           setState={setImages} />
-          <h6>(using a free file uploader, may require few taps)</h6>
+        <h6>(using a free file uploader, may require few taps)</h6>
       </div>
     </div>
   );
