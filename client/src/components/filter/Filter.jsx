@@ -4,6 +4,7 @@ import { useSearchParams } from "react-router-dom"
 
 function Filter() {
   const [searchParams, setSearchParams ] = useSearchParams();
+  const [error, setError] = useState("");
   const [query,setQuery] = useState({
     type:searchParams.get("type") || "",
     city:searchParams.get("city") || "",
@@ -20,6 +21,25 @@ function Filter() {
     })
   }
 
+  const handleMinPriceChange = (e) => {
+    e.target.value  = Math.max(0, e.target.value)
+    setQuery((prev) => ({ ...prev, minPrice:e.target.value  }));
+  }
+  const handleMaxPriceChange = (e) => {
+    e.target.value  = Math.max(0, e.target.value)
+    setQuery((prev) => ({ ...prev, maxPrice: e.target.value }));
+  }
+  const handleCityChange = (e) => {
+    const newValue = e.target.value;
+    const regex = /^[a-zA-Z\s]*$/; // Allow letters and spaces only
+    if (regex.test(newValue)) {
+      setQuery((prev) => ({ ...prev, city: newValue }));
+      setError(""); // Clear the error message
+    }else { 
+      setError("Please enter only letters and spaces."); // Set the error message
+      }
+  }
+
   const handleFilter = () =>{
     setSearchParams(query)
   }
@@ -32,7 +52,7 @@ function Filter() {
       <div className="top">
         <div className="item">
           <label htmlFor="city">Location</label>
-          <input onChange={handleClick}
+          <input onChange={handleCityChange}
             type="text"
             id="city"
             name="city"
@@ -44,7 +64,7 @@ function Filter() {
       <div className="bottom">
         <div className="item">
           <label htmlFor="type">Type</label>
-          <select name="type" id="type" onChange={handleClick} defaultValue={query.city}> 
+          <select name="type" id="type" onChange={handleClick} defaultValue={query.type}> 
             <option value="">any</option>
             <option value="buy">Buy</option>
             <option value="rent">Rent</option>
@@ -62,7 +82,7 @@ function Filter() {
         </div>
         <div className="item">
           <label htmlFor="minPrice">Min Price</label>
-          <input onChange={handleClick} defaultValue={query.minPrice}
+          <input onChange={handleMinPriceChange} defaultValue={query.minPrice}
             type="number"
             id="minPrice"
             name="minPrice"
@@ -71,7 +91,7 @@ function Filter() {
         </div>
         <div className="item">
           <label htmlFor="maxPrice">Max Price</label>
-          <input onChange={handleClick} defaultValue={query.maxPrice}
+          <input onChange={handleMaxPriceChange} defaultValue={query.maxPrice}
             type="text"
             id="maxPrice"
             name="maxPrice"
@@ -87,10 +107,12 @@ function Filter() {
             placeholder="any"
           />
         </div>
-        <button onClick={handleFilter}>
+        <button onClick={handleFilter} disabled={!!error}>
           <img src="/search.png" alt="" />
         </button>
       </div>
+      {error && <p className="error">{error}</p>} {/* Display error message */}
+
     </div>
   );
 }

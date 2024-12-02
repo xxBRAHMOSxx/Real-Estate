@@ -51,5 +51,8 @@
         height: 24px;
       }
     }
+    button:disabled {
+      cursor: not-allowed;
+    }
   }
 }
