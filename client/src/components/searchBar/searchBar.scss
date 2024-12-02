@@ -91,7 +91,17 @@
             width: 24px;
             height: 24px;
           }
+          
+          
+        }
+        button:disabled {
+          cursor: not-allowed;
         }
     }
   }
+}
+.error {
+  color: red;
+  font-size: 0.8em;
+  margin-top: 5px;
 }

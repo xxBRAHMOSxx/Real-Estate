@@ -22,6 +22,7 @@ function Navbar() {
           <span>RealEstate</span>
         </a>
         <a href="/">Home</a>
+        <a href="/list">Properties</a>
         <a href="/about">About</a>
         <a href="/contact">Contact</a>
       </div>

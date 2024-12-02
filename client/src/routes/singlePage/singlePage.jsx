@@ -48,7 +48,7 @@ function SinglePage() {
                 <div className="price">$ {post.price}</div>
               </div>
               <div className="user">
-                <img src={post.user.avatar} alt="" />
+                <img src={post.user.avatar || "./noavatar.png"} alt="" />
                 <span>{post.user.username}</span>
               </div>
             </div>
@@ -84,7 +84,7 @@ function SinglePage() {
             <div className="feature">
               <img src="/fee.png" alt="" />
               <div className="featureText">
-                <span>Income Policy</span>
+                <span>Income Policy (yearly)</span>
                 <p>{post.postDetail.income}</p>
               </div>
             </div>
@@ -110,21 +110,21 @@ function SinglePage() {
               <img src="/school.png" alt="" />
               <div className="featureText">
                 <span>School</span>
-                <p>{post.postDetail.school}m away</p>
+                <p>{post.postDetail.school}km away</p>
               </div>
             </div>
             <div className="feature">
               <img src="/pet.png" alt="" />
               <div className="featureText">
                 <span>Bus Stop</span>
-                <p>{post.postDetail.bus}m away</p>
+                <p>{post.postDetail.bus}km away</p>
               </div>
             </div>
             <div className="feature">
               <img src="/fee.png" alt="" />
               <div className="featureText">
                 <span>Restaurant</span>
-                <p>{post.postDetail.restaurant}m away</p>
+                <p>{post.postDetail.restaurant}km away</p>
               </div>
             </div>
           </div>

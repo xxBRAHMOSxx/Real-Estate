@@ -131,7 +131,7 @@ function NewPostPage() {
               </select>
             </div>
             <div className="item">
-              <label htmlFor="income">Income Policy</label>
+              <label htmlFor="income">Income Policy (yearly)</label>
               <input
                 id="income"
                 name="income"
