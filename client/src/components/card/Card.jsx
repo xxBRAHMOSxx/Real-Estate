@@ -1,7 +1,31 @@
-import { Link } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import "./card.scss";
+import { useState } from "react";
 
 function Card({ item }) {
+  const post = useLoaderData()
+  const {postResponse,chatResponse} = post
+  const [saved, setSaved] = useState(post.isSaved)
+  
+    const handleSave = async () => {
+      console.log(import.meta.env.VITE_REACT_APP_MAP_URI);
+      
+      // setSaved((prev) => !prev)
+      
+      // if (!currentUser) {
+      //   navigate("/login")
+      // }
+  
+      // try {
+      //   await apiRequest.post("/users/save", { postId: post.id })
+  
+      // } catch (err) {
+      //   console.log(err);
+      //   setSaved((prev) => !prev)
+      //   setError(err.response.data.message)
+      // }
+  
+    }
   return (
     <div className="card">
       <Link to={`/${item.id}`} className="imageContainer">
@@ -29,10 +53,8 @@ function Card({ item }) {
           </div>
           <div className="icons">
             <div className="icon">
-              <img src="/save.png" alt="" />
-            </div>
-            <div className="icon">
-              <img src="/chat.png" alt="" />
+            {/* {put here any thing to add to card} */}
+            <button onClick={handleSave} className="save">button</button>
             </div>
           </div>
         </div>

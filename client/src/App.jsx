@@ -14,6 +14,7 @@ import NewPostPage from "./routes/newPostPage/newPostPage"
 import { listPageLoader, profilePageLoader, singlePageLoader } from "./lib/loaders";
 import AboutPage from "./routes/aboutPage/AboutPage";
 import ContactPage from "./routes/contactPage/ContactPage";
+import Map from "./components/3dmap/map"
 
 function App() {
   const router = createBrowserRouter([
@@ -51,6 +52,11 @@ function App() {
         {
           path: "/register",
           element: <Register />
+        }
+        ,
+        {
+          path: "/map",
+          element: <Map />
         }
       ]
     },
