@@ -52,10 +52,10 @@ function Card({ item }) {
             </div>
           </div>
           <div className="icons">
-            <div className="icon">
-            {/* {put here any thing to add to card} */}
-            <button onClick={handleSave} className="save">button</button>
-            </div>
+           {/*  <div className="icon">
+            {put here any thing to add to card} <button onClick={handleSave} className="save">button</button>
+            
+            </div>*/}
           </div>
         </div>
       </div>

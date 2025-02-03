@@ -66,7 +66,7 @@ function NewPostPage() {
               <input id="title" name="title" type="text" />
             </div>
             <div className="item">
-              <label htmlFor="price">Price</label>
+              <label htmlFor="price">Price (INR)</label>
               <input id="price" name="price" type="number" />
             </div>
             <div className="item">

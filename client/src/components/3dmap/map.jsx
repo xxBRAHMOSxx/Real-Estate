@@ -1,10 +1,11 @@
 import {useState} from 'react'
 import {APIProvider,Map,AdvancedMarker,Pin,InfoWindow} from '@vis.gl/react-google-maps'
+import {Wrapper} from '@googlemaps/react-wrapper'
 
 const MAP = ({items}) => {
   const position = { lat: 30.330108, lng: 78.086127 }// {latitude: 30.330108, longitude: 30.330108}
   return (
-    <APIProvider apiKey={import.meta.env.VITE_REACT_APP_MAP_URI}>
+    <APIProvider apiKey={import.meta.env.VITE_REACT_APP_GOMAP_URI}>
       <div className='maps' style={{height:"100vh"}}>
         <Map  zoom={11}
       center={ position }
